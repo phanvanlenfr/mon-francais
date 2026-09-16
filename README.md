@@ -34,7 +34,24 @@ Website tự học tiếng Pháp và luyện DELF B1, chạy hoàn toàn trên t
 - `mock-exam.html`: tạo lượt thi thử, đồng hồ, bốn phần thi, lưu/nộp bài và nhập điểm.
 - `planner.html`: tạo kế hoạch tuần dựa trên kỹ năng yếu, số phút và ngày có thể học.
 - `settings.html`: xuất/nhập toàn bộ dữ liệu JSON, đặt lại hai bước, cấu hình đồng bộ và prompt AI.
-- Kho dữ liệu `storage.js` phiên bản 4 tự nhập dữ liệu từ các khóa `localStorage` cũ và giữ bản dự phòng khi khôi phục/đặt lại.
+- `vocabulary.html`: Active Recall, phiên ôn tối đa 20 từ, lịch ôn cách quãng 5 mức, kho A–Z và bốn dạng bài tập.
+- `reading.html`: không gian đọc hai cột, đồng hồ, chế độ tập trung, Notes / Noter, tóm tắt, cấu trúc và câu hỏi đọc hiểu.
+- Kho dữ liệu `storage.js` phiên bản 5 tự nhập dữ liệu từ các khóa `localStorage` cũ và giữ bản dự phòng trước khi chuyển đổi, khôi phục hoặc đặt lại.
+
+## Cách dùng trang Từ vựng mới
+
+1. Mở `vocabulary.html` hoặc chọn **Từ vựng** trên thanh điều hướng.
+2. Chọn **Ôn hôm nay** để tạo phiên tối đa 20 từ. Hệ thống ưu tiên từ đến hạn, từ khó và từ mới.
+3. Tự nhớ nghĩa trước, chọn **Hiện nghĩa**, rồi đánh giá từ mức 1 đến 5. Có thể dùng phím số `1`–`5`.
+4. Luyện lại bằng Chọn nghĩa, Điền từ, Nghe & viết hoặc Ghép cặp.
+5. Dùng **Kho từ A–Z** để tìm kiếm, lọc và mở riêng một từ.
+
+## Cách dùng trang Đọc mới
+
+1. Mở một bài trong kho bài đọc; đồng hồ và tiến độ được lưu riêng theo bài.
+2. Bấm vào từ được tô sáng để xem nghĩa, phát âm, lưu vào ghi chú từ vựng hoặc đưa vào Sổ lỗi.
+3. Dùng bảng **Notes / Noter** để lưu ghi chú, cấu trúc, tóm tắt và thẻ chủ đề.
+4. Mở phần câu hỏi đọc hiểu, kiểm tra từng câu rồi chọn **Hoàn thành bài đọc**.
 
 ## Điều kiện đọc Google Sheets
 

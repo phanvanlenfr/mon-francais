@@ -104,8 +104,10 @@ const MF = (() => {
       return {
         id: `sheet-${index}`,
         word: String(cells[1]?.v ?? "").trim(),
+        partOfSpeech: String(cells[2]?.v ?? "").trim(),
         meaning: String(cells[3]?.v ?? "").trim(),
         example: String(cells[4]?.v ?? "").trim(),
+        exampleTranslation: String(cells[5]?.v ?? "").trim(),
         date: gvizDateToIso(cells[9]?.v)
       };
     }).filter(item => item.word && (!date || item.date === date));

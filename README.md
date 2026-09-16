@@ -18,13 +18,13 @@ Website tự học tiếng Pháp và luyện DELF B1, chạy hoàn toàn trên t
 - Đồng hồ nổi hình tròn ở góc dưới bên phải; bấm vào để mở hai chế độ đếm thời gian học và đếm ngược.
 - Phát âm tiếng Pháp bằng Web Speech API.
 - Chọn ngày và tải từ vựng từ trang `T6` của Google Sheets: từ ở cột B, nghĩa ở D, ví dụ ở E và ngày ở J.
-- Đánh dấu từ đã thuộc.
-- Tiến độ ngữ pháp và bốn kỹ năng khởi tạo từ 0.
-- Bài tập Subjonctif mẫu.
+- Danh sách ngày chỉ hiển thị những ngày thực sự có dữ liệu trong cột J.
+- Ôn Flashcard tối đa 20 từ mỗi lượt và tự đánh giá theo 5 mức độ thuộc.
+- Xem toàn bộ kho từ vựng T6 theo thứ tự A–Z.
 - Nhiệm vụ và tiến độ bốn kỹ năng.
 - Lưu dữ liệu bằng `localStorage`.
 - Trang Ngữ pháp: thêm, sửa, xóa chủ điểm; lý thuyết, ví dụ, bài tập, đáp án và liên kết tài liệu.
-- Trang Đọc: thêm bài đọc, mở từng bài, tô màu từ khớp với trang T6 và mở thẻ nghĩa/phát âm.
+- Trang Đọc: thêm bài đọc, mở từng bài, tự tải toàn bộ T6; tô màu khi từ hoặc một thành phần của cụm từ khớp với bài đọc và mở thẻ nghĩa/phát âm.
 - Trang Nghe: thêm test, audio trực tuyến, transcription, từ vựng, cấu trúc, câu hỏi, điểm số và ghi chú.
 - Trang Nói: lưu đề, dàn ý, từ vựng, câu hỏi giám khảo và ghi âm trong phiên sử dụng.
 - Trang Viết: lưu đề, dàn ý, bài viết, bản sửa lỗi, nhận xét và điểm số.

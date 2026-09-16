@@ -27,24 +27,16 @@
     </header>
 
     <section class="dashboard-banner">
-      <div><small>📅 <span id="today"></span></small><h2>Từ vựng hôm nay</h2><p>Chọn ngày để ôn đúng nhóm từ đã nhập trong trang T6.</p></div>
+      <div><small>📅 <span id="today"></span></small><h2>Từ vựng hôm nay</h2></div>
       <article class="sheet-card"><div class="sheet-icon">▦</div><div><h2>Google Sheet</h2><p>Kho từ vựng T6</p></div><button id="sheetBtn">Mở Sheet ↗</button><input id="sheetUrl" aria-label="Liên kết Google Sheets" placeholder="Dán liên kết Google Sheets"></article>
     </section>
 
     <section id="vocabulary" class="block vocab-section">
-      <div class="heading"><div><span class="section-number">01</span><h2>Từ vựng theo ngày</h2><p id="wordCount">Chọn ngày để tải từ trang T6</p></div><div class="date-tools"><label>Ngày học <input id="vocabDate" type="date"></label><button id="loadWords">Hiển thị từ vựng</button></div></div>
+      <div class="heading"><div><span class="section-number">01</span><h2>Từ vựng theo ngày</h2><p id="wordCount">Đang tải các ngày có từ vựng…</p></div><div class="date-tools"><label>Ngày học <select id="vocabDate" aria-label="Chọn ngày có từ vựng"></select></label><button id="loadWords">Hiển thị từ vựng</button><button id="flashcardBtn" class="review-button">🗂 Ôn Flashcard</button><button id="allWordsBtn">A–Z Tất cả từ</button></div></div>
       <div class="vocab-grid" id="wordGrid"></div>
     </section>
 
-    <section id="grammar" class="block">
-      <div class="heading"><div><span>▦</span><h2>Ôn tập ngữ pháp</h2><p>Củng cố kiến thức qua các bài luyện tập</p></div></div>
-      <div class="grammar-grid" id="grammarGrid"></div>
-    </section>
-
-    <section id="progress" class="bottom-grid">
-      <article class="card"><div class="title"><i>▥</i><div><h2>Tiến độ kỹ năng trong tuần</h2><p>Theo dõi bốn kỹ năng DELF B1</p></div></div><div class="skills" id="skills"></div></article>
-      <article class="card tasks"><div class="task-head"><h2>☑ Nhiệm vụ hôm nay</h2><b id="taskCount"></b></div><div class="progress"><span id="taskBar"></span></div><div id="taskList"></div></article>
-    </section>
+    <section class="card tasks dashboard-tasks"><div class="task-head"><h2>☑ Nhiệm vụ hôm nay</h2><b id="taskCount"></b></div><div class="progress"><span id="taskBar"></span></div><div id="taskList"></div></section>
   </main>
 
   <div class="floating-study" id="floatingStudy">
@@ -61,7 +53,8 @@
     </button>
   </div>
 
-  <dialog id="quizModal"><button class="close" data-close="quizModal">×</button><h2>Bài tập Subjonctif</h2><p>Il faut que tu ___ tes devoirs avant de sortir.</p><div class="answers"><button>fais</button><button>fasses</button><button>feras</button></div><button id="checkAnswer">Kiểm tra đáp án</button><p id="quizResult"></p></dialog>
+  <dialog id="flashcardDialog" class="flashcard-dialog"><button class="close" data-close="flashcardDialog">×</button><div class="flashcard-head"><div><small>ÔN TỐI ĐA 20 TỪ</small><h2>🗂 Flashcard</h2></div><b id="flashProgress">0 / 0</b></div><button id="flashCard" class="flash-card" aria-label="Lật thẻ"><span id="flashWord">Từ vựng</span><small>Bấm để xem nghĩa</small><div id="flashAnswer" hidden><b id="flashMeaning"></b><p id="flashExample"></p></div></button><div class="mastery-buttons" id="masteryButtons"><button data-level="1">1<br><small>Chưa nhớ</small></button><button data-level="2">2<br><small>Hơi nhớ</small></button><button data-level="3">3<br><small>Đang thuộc</small></button><button data-level="4">4<br><small>Gần thuộc</small></button><button data-level="5">5<br><small>Đã thuộc</small></button></div><div class="flash-actions"><button id="flashSpeak">🔊 Phát âm</button><button id="flashNext" class="primary">Từ tiếp theo →</button></div></dialog>
+  <dialog id="allWordsDialog" class="all-words-dialog"><button class="close" data-close="allWordsDialog">×</button><div class="flashcard-head"><div><small>KHO TỪ VỰNG T6</small><h2>A–Z Tất cả từ vựng</h2></div><b id="allWordsCount"></b></div><div id="allWordsList" class="all-words-list"></div></dialog>
   <div id="toast" role="status"></div>
   <script src="script.js"></script>
 </body>

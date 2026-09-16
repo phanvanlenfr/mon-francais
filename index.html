@@ -26,21 +26,19 @@
       <div class="avatar">VL</div>
     </header>
 
-    <section class="hero">
+    <section class="hero hero-two">
       <article class="card timer-card">
         <div class="title"><i>◷</i><div><h2>Thời gian học hôm nay</h2><p>Mục tiêu 120 phút</p></div><b id="studyPercent">0%</b></div>
+        <div class="timer-mode"><button id="countUpMode" class="selected">⏱ Đếm thời gian học</button><button id="countDownMode">⌛ Đếm ngược</button></div>
+        <div class="countdown-setting" id="countdownSetting" hidden><label>Số phút <input id="countdownMinutes" type="number" min="1" max="480" value="25"></label><button id="applyCountdown">Áp dụng</button></div>
         <div class="timer" id="timer">00:00:00</div><div class="progress"><span id="studyBar"></span></div>
         <div class="actions"><button id="startBtn" class="success">▶ Bắt đầu</button><button id="pauseBtn">Ⅱ Tạm dừng</button><button id="resetBtn">↻ Đặt lại</button></div>
-      </article>
-      <article class="card countdown">
-        <div><h2>🎯 Còn <strong id="days">0</strong> ngày</h2><p>DELF B1 • 15/11/2026</p><em>“Un objectif clair conduit à de grands résultats.”</em></div>
-        <div class="ring" id="ring"><span id="examPercent">0%</span><small>Đã đi qua</small></div>
       </article>
       <article class="card sheet-card"><div class="sheet-icon">▦</div><h2>Mở Google Sheets</h2><p>Kho từ vựng và kế hoạch học</p><button id="sheetBtn">↗ Mở ngay</button><input id="sheetUrl" placeholder="Dán liên kết Google Sheets"></article>
     </section>
 
     <section id="vocabulary" class="block">
-      <div class="heading"><div><span>▣</span><h2>Từ vựng hôm nay</h2><p id="wordCount"></p></div><button id="openWordModal">＋ Thêm từ</button></div>
+      <div class="heading"><div><span>▣</span><h2>Từ vựng theo ngày</h2><p id="wordCount">Chọn ngày để tải từ Google Sheets</p></div><div class="date-tools"><label>Ngày học <input id="vocabDate" type="date"></label><button id="loadWords">Tải từ vựng</button></div></div>
       <div class="vocab-grid" id="wordGrid"></div>
     </section>
 
@@ -55,7 +53,6 @@
     </section>
   </main>
 
-  <dialog id="wordModal"><button class="close" data-close="wordModal">×</button><h2>Thêm từ vựng mới</h2><label>Từ tiếng Pháp<input id="newWord"></label><label>Nghĩa tiếng Việt<input id="newMeaning"></label><label>Câu ví dụ<input id="newExample"></label><button id="saveWord">Lưu từ mới</button></dialog>
   <dialog id="quizModal"><button class="close" data-close="quizModal">×</button><h2>Bài tập Subjonctif</h2><p>Il faut que tu ___ tes devoirs avant de sortir.</p><div class="answers"><button>fais</button><button>fasses</button><button>feras</button></div><button id="checkAnswer">Kiểm tra đáp án</button><p id="quizResult"></p></dialog>
   <div id="toast" role="status"></div>
   <script src="script.js"></script>

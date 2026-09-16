@@ -44,6 +44,7 @@ function renderTimer() {
   $("#timer").textContent = format(shown);
   $("#studyPercent").textContent = `${percent}%`;
   $("#studyBar").style.width = `${percent}%`;
+  $("#timerLauncher").style.setProperty("--timer-progress", `${percent * 3.6}deg`);
   $("#countUpMode").classList.toggle("selected", !isCountdown);
   $("#countDownMode").classList.toggle("selected", isCountdown);
   $("#countdownSetting").hidden = !isCountdown;
@@ -109,18 +110,11 @@ function gvizDateToIso(value) {
 async function loadWordsByDate() {
   const chosenDate = $("#vocabDate").value;
   if (!chosenDate) return toast("Hãy chọn ngày cần xem từ vựng");
-  const month = Number(chosenDate.slice(5, 7));
-  if (month < 6 || month > 12) {
-    state.words = [];
-    renderWords("Sheet hiện có các trang T6 đến T12. Hãy chọn ngày từ tháng 6 đến tháng 12.");
-    return;
-  }
-
   const button = $("#loadWords");
   button.disabled = true;
   button.textContent = "Đang tải…";
   try {
-    const tab = `T${month}`;
+    const tab = "T6";
     const endpoint = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(tab)}&headers=1&t=${Date.now()}`;
     const response = await fetch(endpoint);
     if (!response.ok) throw new Error("Không đọc được Sheet");
@@ -148,7 +142,7 @@ async function loadWordsByDate() {
     toast(state.words.length ? `Đã tải ${state.words.length} từ vựng` : "Ngày này chưa có từ vựng");
   } catch (error) {
     state.words = [];
-    renderWords("Không thể tải Sheet. Hãy đặt quyền: Bất kỳ ai có liên kết đều có thể xem.");
+    renderWords("Không thể tải trang T6. Hãy đặt quyền Sheet: Bất kỳ ai có liên kết đều có thể xem.");
     toast("Không thể đọc Google Sheets công khai");
   } finally {
     button.disabled = false;
@@ -224,8 +218,18 @@ $("#applyCountdown").onclick = () => {
   toast(`Đã đặt đếm ngược ${minutes} phút`);
 };
 $("#loadWords").onclick = loadWordsByDate;
+$("#vocabDate").onchange = loadWordsByDate;
 $("#sheetUrl").onchange = event => { state.sheetUrl = event.target.value.trim(); save(); toast("Đã lưu liên kết"); };
 $("#sheetBtn").onclick = () => window.open(state.sheetUrl || DEFAULT_SHEET_URL, "_blank", "noopener");
+$("#timerLauncher").onclick = () => {
+  const popover = $("#timerPopover");
+  popover.hidden = !popover.hidden;
+  $("#timerLauncher").setAttribute("aria-expanded", String(!popover.hidden));
+};
+$("#timerClose").onclick = () => {
+  $("#timerPopover").hidden = true;
+  $("#timerLauncher").setAttribute("aria-expanded", "false");
+};
 
 document.addEventListener("click", event => {
   const button = event.target.closest("button");

@@ -15,9 +15,9 @@ Website tự học tiếng Pháp và luyện DELF B1, chạy hoàn toàn trên t
 
 ## Chức năng
 
-- Hai chế độ đồng hồ: đếm thời gian học và đếm ngược theo số phút tự chọn.
+- Đồng hồ nổi hình tròn ở góc dưới bên phải; bấm vào để mở hai chế độ đếm thời gian học và đếm ngược.
 - Phát âm tiếng Pháp bằng Web Speech API.
-- Chọn ngày và tải từ vựng từ Google Sheets: từ ở cột B, nghĩa ở D, ví dụ ở E và ngày ở J.
+- Chọn ngày và tải từ vựng từ trang `T6` của Google Sheets: từ ở cột B, nghĩa ở D, ví dụ ở E và ngày ở J.
 - Đánh dấu từ đã thuộc.
 - Tiến độ ngữ pháp và bốn kỹ năng khởi tạo từ 0.
 - Bài tập Subjonctif mẫu.

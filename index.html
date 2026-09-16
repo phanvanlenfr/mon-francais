@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Bảng điều khiển tự học tiếng Pháp và luyện DELF B1">
+  <title>Mon Français</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><span>📖</span><div><b>Mon Français</b><small>Apprendre • Progresser</small></div></div>
+    <nav>
+      <a class="active" href="#top">⌂ <span>Tổng quan</span></a><a href="#vocabulary">▣ <span>Từ vựng</span></a>
+      <a href="#grammar">▦ <span>Ngữ pháp</span></a><a href="#progress">◉ <span>Nghe</span></a>
+      <a href="#progress">▤ <span>Đọc</span></a><a href="#progress">♩ <span>Nói</span></a>
+      <a href="#progress">✎ <span>Viết</span></a><a href="#progress">▥ <span>Tiến độ</span></a>
+    </nav>
+    <blockquote>“Un petit pas chaque jour,<br>de grands résultats !”<small>— Bon courage !</small></blockquote>
+  </aside>
+
+  <main id="top">
+    <header>
+      <button id="menuBtn" class="menu" aria-label="Mở menu">☰</button>
+      <div><h1><span id="greeting">Bonjour</span>, Văn Lên !</h1><p>📅 <span id="today"></span>　☀️ Chúc bạn một ngày học tập hiệu quả!</p></div>
+      <div class="avatar">VL</div>
+    </header>
+
+    <section class="hero">
+      <article class="card timer-card">
+        <div class="title"><i>◷</i><div><h2>Thời gian học hôm nay</h2><p>Mục tiêu 120 phút</p></div><b id="studyPercent">0%</b></div>
+        <div class="timer" id="timer">00:00:00</div><div class="progress"><span id="studyBar"></span></div>
+        <div class="actions"><button id="startBtn" class="success">▶ Bắt đầu</button><button id="pauseBtn">Ⅱ Tạm dừng</button><button id="resetBtn">↻ Đặt lại</button></div>
+      </article>
+      <article class="card countdown">
+        <div><h2>🎯 Còn <strong id="days">0</strong> ngày</h2><p>DELF B1 • 15/11/2026</p><em>“Un objectif clair conduit à de grands résultats.”</em></div>
+        <div class="ring" id="ring"><span id="examPercent">0%</span><small>Đã đi qua</small></div>
+      </article>
+      <article class="card sheet-card"><div class="sheet-icon">▦</div><h2>Mở Google Sheets</h2><p>Kho từ vựng và kế hoạch học</p><button id="sheetBtn">↗ Mở ngay</button><input id="sheetUrl" placeholder="Dán liên kết Google Sheets"></article>
+    </section>
+
+    <section id="vocabulary" class="block">
+      <div class="heading"><div><span>▣</span><h2>Từ vựng hôm nay</h2><p id="wordCount"></p></div><button id="openWordModal">＋ Thêm từ</button></div>
+      <div class="vocab-grid" id="wordGrid"></div>
+    </section>
+
+    <section id="grammar" class="block">
+      <div class="heading"><div><span>▦</span><h2>Ôn tập ngữ pháp</h2><p>Củng cố kiến thức qua các bài luyện tập</p></div></div>
+      <div class="grammar-grid" id="grammarGrid"></div>
+    </section>
+
+    <section id="progress" class="bottom-grid">
+      <article class="card"><div class="title"><i>▥</i><div><h2>Tiến độ kỹ năng trong tuần</h2><p>Theo dõi bốn kỹ năng DELF B1</p></div></div><div class="skills" id="skills"></div></article>
+      <article class="card tasks"><div class="task-head"><h2>☑ Nhiệm vụ hôm nay</h2><b id="taskCount"></b></div><div class="progress"><span id="taskBar"></span></div><div id="taskList"></div></article>
+    </section>
+  </main>
+
+  <dialog id="wordModal"><button class="close" data-close="wordModal">×</button><h2>Thêm từ vựng mới</h2><label>Từ tiếng Pháp<input id="newWord"></label><label>Nghĩa tiếng Việt<input id="newMeaning"></label><label>Câu ví dụ<input id="newExample"></label><button id="saveWord">Lưu từ mới</button></dialog>
+  <dialog id="quizModal"><button class="close" data-close="quizModal">×</button><h2>Bài tập Subjonctif</h2><p>Il faut que tu ___ tes devoirs avant de sortir.</p><div class="answers"><button>fais</button><button>fasses</button><button>feras</button></div><button id="checkAnswer">Kiểm tra đáp án</button><p id="quizResult"></p></dialog>
+  <div id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>

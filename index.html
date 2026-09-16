@@ -14,7 +14,9 @@
       <a class="active" href="index.html">🏠 <span>Dashboard</span></a><a href="index.html#vocabulary">📗 <span>Từ vựng</span></a>
       <a href="grammar.html">📘 <span>Ngữ pháp</span></a><a href="speaking.html">🎤 <span>Nói</span></a>
       <a href="writing.html">✍️ <span>Viết</span></a><a href="listening.html">🎧 <span>Nghe</span></a>
-      <a href="reading.html">📖 <span>Đọc</span></a>
+      <a href="reading.html">📖 <span>Đọc</span></a><a href="errors.html">🧩 <span>Sổ lỗi</span></a>
+      <a href="scores.html">📊 <span>Điểm số</span></a><a href="mock-exam.html">📝 <span>Thi thử</span></a>
+      <a href="planner.html">📅 <span>Kế hoạch</span></a><a href="settings.html">⚙️ <span>Cài đặt</span></a>
     </nav>
     <blockquote>“Un petit pas chaque jour,<br>de grands résultats !”<small>— Bon courage !</small></blockquote>
   </aside>
@@ -29,6 +31,13 @@
     <section class="dashboard-banner">
       <div><small>📅 <span id="today"></span></small><h2>Từ vựng hôm nay</h2></div>
       <article class="sheet-card"><div class="sheet-icon">▦</div><div><h2>Google Sheet</h2><p>Kho từ vựng T6</p></div><button id="sheetBtn">Mở Sheet ↗</button><input id="sheetUrl" aria-label="Liên kết Google Sheets" placeholder="Dán liên kết Google Sheets"></article>
+    </section>
+
+    <section class="exam-dashboard" id="examDashboard">
+      <article class="card readiness-card"><div class="title"><i>🎯</i><div><h2>Mức độ sẵn sàng</h2><p id="readinessText">Chưa có dữ liệu điểm</p></div><b id="readinessPercent">0%</b></div><div class="progress"><span id="readinessBar"></span></div><a href="scores.html">Xem bảng điểm →</a></article>
+      <article class="card"><div class="title"><i>🧩</i><div><h2>Lỗi cần ôn</h2><p id="dueErrors">0 lỗi đến hạn</p></div></div><div id="recentErrors" class="compact-list"></div><a href="errors.html">Mở Sổ lỗi →</a></article>
+      <article class="card"><div class="title"><i>📅</i><div><h2>Việc học hôm nay</h2><p id="todayPlanCount">0 nhiệm vụ</p></div></div><div id="todayPlan" class="compact-list"></div><a href="planner.html">Mở kế hoạch →</a></article>
+      <article class="card"><div class="title"><i>📊</i><div><h2>Bốn kỹ năng</h2><p>Trung bình 3 kết quả gần nhất</p></div></div><div id="dashboardSkills" class="dashboard-skills"></div></article>
     </section>
 
     <section id="vocabulary" class="block vocab-section">
@@ -56,6 +65,6 @@
   <dialog id="flashcardDialog" class="flashcard-dialog"><button class="close" data-close="flashcardDialog">×</button><div class="flashcard-head"><div><small>ÔN TỐI ĐA 20 TỪ</small><h2>🗂 Flashcard</h2></div><b id="flashProgress">0 / 0</b></div><button id="flashCard" class="flash-card" aria-label="Lật thẻ"><span id="flashWord">Từ vựng</span><small>Bấm để xem nghĩa</small><div id="flashAnswer" hidden><b id="flashMeaning"></b><p id="flashExample"></p></div></button><div class="mastery-buttons" id="masteryButtons"><button data-level="1">1<br><small>Chưa nhớ</small></button><button data-level="2">2<br><small>Hơi nhớ</small></button><button data-level="3">3<br><small>Đang thuộc</small></button><button data-level="4">4<br><small>Gần thuộc</small></button><button data-level="5">5<br><small>Đã thuộc</small></button></div><div class="flash-actions"><button id="flashSpeak">🔊 Phát âm</button><button id="flashNext" class="primary">Từ tiếp theo →</button></div></dialog>
   <dialog id="allWordsDialog" class="all-words-dialog"><button class="close" data-close="allWordsDialog">×</button><div class="flashcard-head"><div><small>KHO TỪ VỰNG T6</small><h2>A–Z Tất cả từ vựng</h2></div><b id="allWordsCount"></b></div><div id="allWordsList" class="all-words-list"></div></dialog>
   <div id="toast" role="status"></div>
-  <script src="script.js"></script>
+  <script src="script.js"></script><script src="storage.js"></script><script src="dashboard-v4.js"></script>
 </body>
 </html>

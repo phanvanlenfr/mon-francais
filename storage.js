@@ -1,0 +1,25 @@
+(function(){
+  const KEY="mon-francais-state-v4",BACKUP="mon-francais-state-v4-backup";
+  const template={version:4,profile:{name:"Văn Lên",examDate:"",dailyMinutes:120},vocabulary:[],reviewSessions:[],grammarTopics:[],readings:[],listenings:[],speakingTasks:[],writingTasks:[],errors:[],scores:[],mockExams:[],plans:[],tasks:[],studySessions:[],settings:{storageMode:"local",aiEndpoint:"",syncEndpoint:"",lastBackup:""}};
+  const clone=value=>JSON.parse(JSON.stringify(value));
+  const arrayKeys=Object.keys(template).filter(key=>Array.isArray(template[key]));
+  function safeParse(raw,fallback=null){try{return JSON.parse(raw)}catch(_){return fallback}}
+  function legacy(){const dashboard=safeParse(localStorage.getItem("mon-francais-github-v3"),{})||{};return{vocabulary:Array.isArray(dashboard.allWords)?dashboard.allWords.map(word=>({...word,mastery:dashboard.mastery?.[`${word.word}|${word.date||""}`.toLocaleLowerCase("fr")]||0})):[],grammarTopics:safeParse(localStorage.getItem("mf-grammar-v1"),[])||[],readings:safeParse(localStorage.getItem("mf-reading-v1"),[])||[],listenings:safeParse(localStorage.getItem("mf-listening-v1"),[])||[],speakingTasks:safeParse(localStorage.getItem("mf-speaking-v1"),[])||[],writingTasks:safeParse(localStorage.getItem("mf-writing-v1"),[])||[],tasks:Array.isArray(dashboard.tasks)?dashboard.tasks:[],studySessions:dashboard.seconds?[{id:"legacy-study",date:new Date().toISOString().slice(0,10),seconds:dashboard.seconds}]:[]};}
+  function normalize(input){const output={...clone(template),...(input&&typeof input==="object"?input:{})};output.version=4;arrayKeys.forEach(key=>{if(!Array.isArray(output[key]))output[key]=[];});output.profile={...template.profile,...(output.profile||{})};output.settings={...template.settings,...(output.settings||{})};return output;}
+  function load(){const current=safeParse(localStorage.getItem(KEY));if(current)return normalize(current);const first=normalize({...template,...legacy()});localStorage.setItem(KEY,JSON.stringify(first));return first;}
+  let state=load();
+  function commit(){localStorage.setItem(KEY,JSON.stringify(state));window.dispatchEvent(new CustomEvent("mf-store-change",{detail:clone(state)}));}
+  function list(collection){return clone(state[collection]||[])}
+  function set(collection,items){if(!arrayKeys.includes(collection)||!Array.isArray(items))throw new Error("Dữ liệu không hợp lệ");state[collection]=clone(items);commit();return list(collection)}
+  function add(collection,item){const value={...clone(item),id:item.id||`${collection}-${Date.now()}-${Math.random().toString(16).slice(2)}`,createdAt:item.createdAt||new Date().toISOString(),updatedAt:new Date().toISOString()};state[collection].push(value);commit();return clone(value)}
+  function update(collection,id,patch){const index=state[collection].findIndex(item=>item.id===id);if(index<0)return null;state[collection][index]={...state[collection][index],...clone(patch),id,updatedAt:new Date().toISOString()};commit();return clone(state[collection][index])}
+  function remove(collection,id){state[collection]=state[collection].filter(item=>item.id!==id);commit()}
+  function configure(section,patch){state[section]={...(state[section]||{}),...clone(patch)};commit();return clone(state[section])}
+  function snapshot(){return clone(state)}
+  function exportData(){state.settings.lastBackup=new Date().toISOString();commit();return JSON.stringify(state,null,2)}
+  function importData(input){const parsed=typeof input==="string"?safeParse(input):input;if(!parsed||typeof parsed!=="object"||!parsed.version)throw new Error("Tệp không đúng cấu trúc");localStorage.setItem(BACKUP,JSON.stringify(state));state=normalize(parsed);commit();return snapshot()}
+  function reset(collection="all"){localStorage.setItem(BACKUP,JSON.stringify(state));if(collection==="all")state=clone(template);else if(arrayKeys.includes(collection))state[collection]=[];else throw new Error("Mô-đun không hợp lệ");commit()}
+  function scoreSummary(){const scores=state.scores,skills=["CO","CE","PE","PO"],result={};skills.forEach(skill=>{const values=scores.map(row=>Number(row[skill])).filter(Number.isFinite);result[skill]={latest:values.at(-1)||0,average:values.length?Math.round(values.slice(-3).reduce((a,b)=>a+b,0)/Math.min(3,values.length)*10)/10:0,best:values.length?Math.max(...values):0};});return result}
+  function readiness(){const summary=scoreSummary(),values=Object.values(summary).map(item=>item.average);if(!state.scores.length)return{level:"Chưa có dữ liệu",percent:0,weakest:"—"};const total=values.reduce((a,b)=>a+b,0),weakest=["CO","CE","PE","PO"].sort((a,b)=>summary[a].average-summary[b].average)[0];let level="Chưa sẵn sàng";if(total>=50&&Math.min(...values)>=5)level="Gần đạt";if(total>=60&&Math.min(...values)>=10)level="Sẵn sàng luyện đề";return{level,percent:Math.min(100,Math.round(total)),weakest};}
+  window.MFStore={key:KEY,list,set,add,update,remove,configure,snapshot,exportData,importData,reset,scoreSummary,readiness,commit};
+})();

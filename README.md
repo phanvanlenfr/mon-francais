@@ -29,6 +29,12 @@ Website tự học tiếng Pháp và luyện DELF B1, chạy hoàn toàn trên t
 - Trang Nói: lưu đề, dàn ý, từ vựng, câu hỏi giám khảo và ghi âm trong phiên sử dụng.
 - Trang Viết: lưu đề, dàn ý, bài viết, bản sửa lỗi, nhận xét và điểm số.
 - Dữ liệu tự nhập được lưu riêng trong trình duyệt. Trang Ngữ pháp hỗ trợ xuất/nhập JSON.
+- `errors.html`: Sổ lỗi cá nhân, lịch ôn, bộ lọc và trạng thái đã tự sửa được.
+- `scores.html`: bảng điểm CO–CE–PE–PO trên 25, tổng điểm, cảnh báo và mức độ sẵn sàng.
+- `mock-exam.html`: tạo lượt thi thử, đồng hồ, bốn phần thi, lưu/nộp bài và nhập điểm.
+- `planner.html`: tạo kế hoạch tuần dựa trên kỹ năng yếu, số phút và ngày có thể học.
+- `settings.html`: xuất/nhập toàn bộ dữ liệu JSON, đặt lại hai bước, cấu hình đồng bộ và prompt AI.
+- Kho dữ liệu `storage.js` phiên bản 4 tự nhập dữ liệu từ các khóa `localStorage` cũ và giữ bản dự phòng khi khôi phục/đặt lại.
 
 ## Điều kiện đọc Google Sheets
 
@@ -37,3 +43,5 @@ Trong Google Sheets, chọn **Chia sẻ → Quyền truy cập chung → Bất k
 Không cần cài đặt thư viện hoặc chạy lệnh. Mở `index.html` để chạy thử trên máy tính.
 
 Lưu ý: tệp audio chọn trực tiếp từ máy tính không thể được lưu bền vững bằng `localStorage`. Hãy dùng đường dẫn audio công khai hoặc tải audio vào repository rồi nhập đường dẫn tương đối.
+
+Đồng bộ và AI cần dịch vụ bên ngoài được người dùng tự cấu hình. Khi chưa cấu hình, website luôn ghi rõ “Chỉ lưu trên thiết bị này” và cung cấp prompt AI để sao chép, không nhúng khóa bí mật trong GitHub Pages.
